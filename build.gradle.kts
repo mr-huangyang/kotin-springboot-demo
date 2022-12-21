@@ -1,5 +1,18 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
+//allprojects {
+//    repositories {
+//        maven { url = uri("https://maven.aliyun.com/repository/jcenter") }
+//        maven { url = uri("https://maven.aliyun.com/repository/google") }
+//        maven { url = uri("https://maven.aliyun.com/repository/central") }
+//        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
+//        maven {url = uri(" https://maven.aliyun.com/nexus/content/repositories/spring")}
+//        google()
+//        jcenter()
+//    }
+//}
+
 plugins {
     id("org.springframework.boot") version "2.7.6"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
@@ -9,20 +22,12 @@ plugins {
 }
 
 group = "com.example"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-val developmentOnly by configurations.creating
-configurations {
-    runtimeClasspath {
-        extendsFrom(developmentOnly)
-    }
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -34,6 +39,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.alibaba:druid-spring-boot-starter:1.2.15")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.mysql:mysql-connector-j")
